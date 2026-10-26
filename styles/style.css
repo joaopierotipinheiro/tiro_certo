@@ -1,0 +1,55 @@
+/* Cores e apresentação geral da interface do Tiro Certo. */
+:root { color-scheme: dark; font-family: "Segoe UI", Arial, sans-serif; color: #eef4f6; background: #0c151d; }
+* { box-sizing: border-box; }
+body { margin: 0; overflow: hidden; }
+canvas { display: block; }
+/* Placar fixo sobre o canvas, sem interceptar cliques do jogador. */
+.hud { position: fixed; inset: 24px 28px auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; pointer-events: none; }
+.brand { font-size: 15px; font-weight: 800; letter-spacing: 2px; text-shadow: 0 2px 6px #000; }
+.brand-icon { color: #70e9ff; font-size: 26px; vertical-align: middle; margin-right: 8px; }
+.brand small { display: block; font-size: 9px; color: #c9d8df; letter-spacing: 3px; margin: 5px 0 0 42px; }
+.stats { display: flex; gap: 30px; padding: 16px 24px; background: #0b1624dd; border: 1px solid #ffffff25; border-radius: 8px; }
+.stats small { display: block; font-size: 9px; letter-spacing: 2px; color: #b1c3d0; margin-bottom: 4px; }
+.stats strong { font-size: 23px; font-weight: 600; font-variant-numeric: tabular-nums; }
+#score { color: #70e9ff; }
+#time.urgent { color: #ff7770; }
+/* Mira central e indicação visual de acerto. */
+#crosshair { position: fixed; left: 50%; top: 50%; width: 22px; height: 22px; transform: translate(-50%, -50%); pointer-events: none; color: white; filter: drop-shadow(0 1px 2px black); }
+#crosshair i, #crosshair b { position: absolute; background: currentColor; }
+#crosshair i { left: 10px; top: 3px; width: 2px; height: 16px; }
+#crosshair b { top: 10px; left: 3px; height: 2px; width: 16px; }
+#crosshair.hit { color: #70e9ff; transform: translate(-50%, -50%) rotate(45deg); }
+#feedback { position: fixed; top: 57%; width: 100%; text-align: center; font-weight: 700; letter-spacing: 2px; color: #70e9ff; pointer-events: none; text-shadow: 0 2px 4px black; }
+/* Lembrete dos controles na parte inferior da tela. */
+.controls { position: fixed; bottom: 22px; width: 100%; text-align: center; font-size: 10px; letter-spacing: 1px; color: white; text-shadow: 0 1px 4px black; pointer-events: none; }
+.controls span { color: #c6d3df; margin-left: 3px; }
+/* Telas de início, pausa e resultado sobre a cena 3D. */
+#overlay { position: fixed; inset: 0; background: linear-gradient(100deg, #07121df5 0%, #07121dbb 50%, #07121d45 100%); display: flex; align-items: center; padding: 7vw; overflow: auto; }
+#overlay[hidden] { display: none; }
+.panel { max-width: 530px; padding: 30px 0; }
+.eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 3px; color: #70e9ff; }
+h1 { font-size: clamp(42px, 7vw, 88px); letter-spacing: -5px; line-height: .95; margin: 25px 0; font-weight: 850; }
+h1 span { display: block; color: #70e9ff; }
+#description { max-width: 440px; color: #c3d0dc; line-height: 1.7; font-size: 16px; }
+.rules { display: flex; gap: 25px; margin: 30px 0; padding: 20px 0; border-block: 1px solid #ffffff20; }
+.rules span { font-size: 11px; color: #bac9d4; }
+.rules b { display: block; font-size: 24px; color: white; margin-bottom: 6px; }
+#message { color: #c6d4e0; font-size: 13px; min-height: 20px; }
+button { border: 0; background: #70e9ff; color: #132019; font-size: 14px; font-weight: 800; padding: 17px 30px; border-radius: 5px; cursor: pointer; }
+button:hover { background: #b4f4ff; }
+button:disabled { opacity: .5; cursor: wait; }
+button:focus-visible, input:focus-visible { outline: 3px solid white; outline-offset: 5px; }
+.sound { display: inline-flex; align-items: center; gap: 7px; margin-left: 17px; font-size: 12px; color: #becdd6; }
+input { accent-color: #70e9ff; }
+.hint { display: block; margin-top: 24px; color: #9eafbf; font-size: 11px; line-height: 1.6; }
+/* Identificação do cenário atual. */
+.arena-card { display: flex; align-items: center; gap: 13px; margin-top: 24px; padding: 14px 16px; border: 1px solid #70e9ff35; background: #12354a66; border-radius: 6px; }
+.arena-icon { font-size: 26px; color: #70e9ff; }
+.arena-card strong { display: block; font-size: 13px; letter-spacing: .5px; }
+.arena-card small { display: block; margin-top: 4px; font-size: 10px; color: #a6bdcd; }
+.arena-status { margin-left: auto; font-size: 9px; letter-spacing: 1.5px; color: #70e9ff; }
+.arena-card + .rules { margin-top: 20px; }
+#result { padding: 15px; border-left: 3px solid #70e9ff; background: #ffffff09; line-height: 1.8; font-variant-numeric: tabular-nums; }
+/* Ajusta a interface para janelas menores; os controles continuam por teclado e mouse. */
+@media (max-width: 750px) { .hud { inset: 12px; } .brand { display: none; } .stats { gap: 20px; padding: 10px 14px; } .stats strong { font-size: 18px; } .controls { display: none; } #overlay { padding: 24px; } .panel { margin: auto; } h1 { letter-spacing: -2px; } .rules { gap: 18px; } }
+

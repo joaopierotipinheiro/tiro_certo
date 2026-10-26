@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tiro Certo • Hangar orbital</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./styles/style.css">
+  <!-- Resolve os módulos do Three.js pela cópia local da biblioteca. -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "./vendor/three/build/three.module.js",
+        "three/addons/": "./vendor/three/examples/jsm/"
+      }
+    }
+  </script>
+</head>
+<body>
+  <!-- Contêiner do canvas onde o Three.js desenha o jogo. -->
+  <div id="scene" aria-label="Arena 3D em primeira pessoa"></div>
+  <!-- Placar atualizado pelo JavaScript durante a partida. -->
+  <header class="hud">
+    <div class="brand"><span class="brand-icon">◎</span> TIRO CERTO <small>ÓRION / HANGAR 07</small></div>
+    <div class="stats">
+      <div><small>NÍVEL</small><strong id="level">01 / 03</strong></div>
+      <div><small>PONTOS</small><strong id="score">000</strong></div>
+      <div><small>ALVOS</small><strong id="hits">0 / 5</strong></div>
+      <div><small>TEMPO</small><strong id="time">60s</strong></div>
+    </div>
+  </header>
+  <!-- Mira e feedback visual; as colisões são calculadas no JavaScript. -->
+  <div id="crosshair" aria-hidden="true"><i></i><b></b></div>
+  <div id="feedback" role="status" aria-live="polite"></div>
+  <footer class="controls">W A S D <span>MOVER</span> · MOUSE <span>MIRAR</span> · CLIQUE <span>ATIRAR</span> · ESPAÇO <span>PULAR</span> · ESC <span>PAUSAR</span></footer>
+  <!-- Painel reutilizado para início, pausa, intervalo e resultado. -->
+  <div id="overlay">
+    <section class="panel" aria-labelledby="title">
+      <p class="eyebrow">ESTAÇÃO ÓRION / TREINAMENTO ORBITAL</p>
+      <h1 id="title">TIRO<span>CERTO.</span></h1>
+      <p id="description">Entre no hangar, domine os disparos de energia e complete sua missão antes que o tempo termine.</p>
+      <div class="arena-card"><span class="arena-icon" aria-hidden="true">◈</span><div><strong id="arena-name">Hangar orbital</strong><small id="arena-description">Estação Órion · Setor de treinamento 07</small></div><span class="arena-status">ONLINE</span></div>
+      <div class="rules"><span><b>03</b> níveis</span><span><b>10</b> pontos por acerto</span><span><b>210</b> pontos possíveis</span></div>
+      <div id="result" hidden></div>
+      <p id="message" role="status">Carregando a arena…</p>
+      <button id="play" disabled>Carregando…</button>
+      <label class="sound"><input id="sound" type="checkbox" checked> Sons ativados</label>
+      <small class="hint">Para computador com teclado e mouse. Esc libera o cursor e pausa o jogo.</small>
+    </section>
+  </div>
+  <!-- Inicializa o jogo e conecta seus módulos. -->
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>
